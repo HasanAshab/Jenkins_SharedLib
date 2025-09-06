@@ -1,4 +1,4 @@
-def run(Map params) {
+def call(Map params) {
     withCredentials([usernamePassword(credentialsId: params.CredId, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
         // Construct the full image name
         def fullImageBase = "${env.DOCKER_USER}/${params.ImageBase}-${params.ImageSuffix}"
