@@ -11,10 +11,11 @@ def call(Map params) {
 
         // Scan the built image with Trivy.
         // Trivy needs the full image name and the tag.
-        trivy(
-            imageName: "${fullImageBase}:${params.Tags[0]}",
-            severity: 'HIGH,CRITICAL',
-            scanners: 'os,library',
+        trivy_scan(
+            Image: fullImageBase,
+            Tag: params.Tags[0],
+            Severity: ['HIGH', 'CRITICAL'],
+            Scanners: ['os', 'library'],
         )
 
         if (params.Push) {
